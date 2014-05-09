@@ -1,0 +1,19 @@
+#!/bin/bash
+
+export DISPLAY=:99
+
+if [ -z "$1" ]; then
+  echo "`basename $0` {start|stop}"
+  exit
+fi
+
+filename=selenium-server-standalone-2.41.0.jar
+
+case "$1" in
+start)
+  java -jar \
+    -Dwebdriver.chrome.driver=/web/etc/chromedriver  \
+    -Dwebdriver.firefox.bin=/web/etc/firefox/firefox \
+    /var/lib/selenium/$filename &
+;;
+esac
